@@ -12,9 +12,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         navMenu.classList.remove('active'); // Close menu on click
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const section = document.querySelector(this.getAttribute('href'));
+        if (section) {
+            section.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
 
@@ -36,6 +39,38 @@ function reveal() {
 }
 
 window.addEventListener("scroll", reveal);
+reveal(); // Trigger once on load
 
-// Trigger once on load to show initial elements
-reveal();
+/* Advanced Typing Animation */
+const typingTextElement = document.querySelector(".typing-text");
+const titles = ["Computer Science Student", "Web Developer", "DSA Enthusiast", "Tech Explorer"];
+let titleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const currentTitle = titles[titleIndex];
+
+    if (isDeleting) {
+        typingTextElement.textContent = currentTitle.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typingTextElement.textContent = currentTitle.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    let typeSpeed = isDeleting ? 100 : 200;
+
+    if (!isDeleting && charIndex === currentTitle.length) {
+        typeSpeed = 2000; // Pause at end of word
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        titleIndex = (titleIndex + 1) % titles.length;
+        typeSpeed = 500; // Pause before new word
+    }
+
+    setTimeout(typeEffect, typeSpeed);
+}
+
+document.addEventListener('DOMContentLoaded', typeEffect);
