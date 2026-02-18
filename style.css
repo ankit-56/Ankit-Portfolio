@@ -1,17 +1,22 @@
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #0f1014;
-    --text-primary: #ededed;
-    --text-secondary: #a1a1aa;
-    --accent-primary: #3b82f6;
-    /* Vivid Blue */
-    --accent-secondary: #8b5cf6;
-    /* Vivid Purple */
-    --accent-tertiary: #ec4899;
-    /* Electric Pink for that 'fancy' pop */
-    --accent-glow: rgba(59, 130, 246, 0.5);
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --bg-primary: #0f1115;
+    /* Slightly lighter "void" */
+    --bg-secondary: #161b22;
+    /* Lighter secondary */
+    --text-primary: #ffffff;
+    /* Pure white text */
+    --text-secondary: #cbd5e1;
+    /* Lighter grey text */
+    --accent-primary: #60a5fa;
+    /* Lighter Blue */
+    --accent-secondary: #a78bfa;
+    /* Lighter Purple */
+    --accent-tertiary: #f472b6;
+    /* Lighter Pink */
+    --accent-glow: rgba(96, 165, 250, 0.6);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    /* Increased opacity */
+    --glass-border: rgba(255, 255, 255, 0.1);
     --font-main: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -150,16 +155,17 @@ ul {
 }
 
 /* Section Title Decorative Lines */
+/* Section Title Decorative Lines */
 .section-title::before {
     content: '';
     position: absolute;
     bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: 250px;
     height: 3px;
-    background: linear-gradient(90deg, transparent, var(--accent-primary), var(--accent-tertiary), transparent);
-    box-shadow: 0 0 15px var(--accent-tertiary);
+    background: linear-gradient(90deg, transparent, var(--accent-primary), #fff, var(--accent-tertiary), transparent);
+    box-shadow: 0 0 20px var(--accent-tertiary);
 }
 
 /* Navbar */
@@ -186,10 +192,10 @@ ul {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #fff;
+    text-shadow: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-tertiary);
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
 .nav-menu {
