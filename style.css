@@ -1,12 +1,14 @@
 :root {
     --bg-primary: #0a0a0a;
-    --bg-secondary: #121212;
+    --bg-secondary: #0f1014;
     --text-primary: #ededed;
     --text-secondary: #a1a1aa;
     --accent-primary: #3b82f6;
     /* Vivid Blue */
     --accent-secondary: #8b5cf6;
     /* Vivid Purple */
+    --accent-tertiary: #ec4899;
+    /* Electric Pink for that 'fancy' pop */
     --accent-glow: rgba(59, 130, 246, 0.5);
     --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.08);
@@ -31,9 +33,35 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    background-image:
-        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
+    position: relative;
+    z-index: 1;
+}
+
+/* Dynamic Fancy Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15), transparent 50%),
+        radial-gradient(circle at 80% 30%, rgba(139, 92, 246, 0.15), transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.08), transparent 50%);
+    filter: blur(100px);
+    z-index: -2;
+    animation: gradientFlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes gradientFlow {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(10deg) scale(1.1);
+    }
 }
 
 /* Custom Scrollbar */
@@ -226,7 +254,7 @@ ul {
     font-size: 4.5rem;
     line-height: 1.1;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #ffffff, #94a3b8);
+    background: linear-gradient(to right, #ffffff 20%, var(--accent-tertiary) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -277,7 +305,8 @@ ul {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    box-shadow: 0 8px 25px rgba(236, 72, 153, 0.4);
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-tertiary));
 }
 
 .btn-secondary {
@@ -400,8 +429,8 @@ ul {
 
 .skill-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(59, 130, 246, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-tertiary);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
 }
 
 .skill-card:hover::before {
